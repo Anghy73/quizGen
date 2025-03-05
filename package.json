@@ -6,14 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
+    "lint": "standard",
     "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "standard": "^17.1.2",
     "tailwindcss": "^4.0.9",
+    "uvcanvas": "^0.2.2",
     "zustand": "5.0.3"
   },
   "devDependencies": {
