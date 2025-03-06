@@ -1,9 +1,14 @@
 import { Zenitho } from "uvcanvas"
 import { InputCategory } from "./components/InputCategory"
 import { ListCategories } from "./components/ListCategories"
+import { useEffect } from "react"
 
 function App () {
 
+  useEffect(() => {
+    const apiKey = import.meta.env.VITE_URL;
+    console.log('API Key:', apiKey);
+  }, [])
   return (
     <>
       <div className="w-screen h-screen relative">
