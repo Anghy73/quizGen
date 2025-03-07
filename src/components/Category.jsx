@@ -1,8 +1,6 @@
 import { useState } from "react";
 
 export const Category = ({ cate }) => {
-  console.log(cate.color);
-  console.log(cate.name);
   const [hover, setHover] = useState(false)
 
   const styles = {

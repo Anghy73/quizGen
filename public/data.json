@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "question": "What is the output of print(3 * '3')?",
+    "correctAnswer": "333",
+    "options": [
+      "3",
+      "33",
+      "333",
+      "Error"
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Which of the following is a programming language?",
+    "correctAnswer": "Python",
+    "options": [
+      "HTML",
+      "CSS",
+      "Python",
+      "SQL"
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What does HTML stand for?",
+    "correctAnswer": "HyperText Markup Language",
+    "options": [
+      "HighText Machine Language",
+      "HyperText Markup Language",
+      "HyperText Multiple Language",
+      "HighText Markup Language"
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Which symbol is used for comments in Python?",
+    "correctAnswer": "#",
+    "options": [
+      "//",
+      "<!--",
+      "#",
+      "/*"
+    ]
+  },
+  {
+    "id": 5,
+    "question": "What is the function of 'def' in Python?",
+    "correctAnswer": "Define a function",
+    "options": [
+      "Define a variable",
+      "Define a function",
+      "Define a class",
+      "Define a loop"
+    ]
+  },
+  {
+    "id": 6,
+    "question": "What is a list in Python?",
+    "correctAnswer": "An ordered collection of items",
+    "options": [
+      "An unordered collection of items",
+      "An ordered collection of items",
+      "A type of function",
+      "A type of variable"
+    ]
+  },
+  {
+    "id": 7,
+    "question": "Which of the following is NOT a programming paradigm?",
+    "correctAnswer": "Hypertext",
+    "options": [
+      "Procedural",
+      "Object-oriented",
+      "Functional",
+      "Hypertext"
+    ]
+  },
+  {
+    "id": 8,
+    "question": "What does SQL stand for?",
+    "correctAnswer": "Structured Query Language",
+    "options": [
+      "Simple Question Language",
+      "Structured Query Language",
+      "Schematic Query Language",
+      "Standard Query Language"
+    ]
+  },
+  {
+    "id": 9,
+    "question": "In JavaScript, how do you indicate a variable declaration?",
+    "correctAnswer": "var, let, or const",
+    "options": [
+      "var, let, or const",
+      "new",
+      "declare",
+      "init"
+    ]
+  },
+  {
+    "id": 10,
+    "question": "Which data structure uses LIFO (Last In, First Out)?",
+    "correctAnswer": "Stack",
+    "options": [
+      "Queue",
+      "Array",
+      "Stack",
+      "Linked List"
+    ]
+  }
+]
