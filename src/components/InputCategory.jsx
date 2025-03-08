@@ -14,14 +14,20 @@ export const InputCategory = () => {
   }
 
   const handleGetQuestions = async () => {
+    if (category.trim() === '') return
     getQuestions(category)
+  }
+
+  const handleEnter = (elem) => {
+    if (elem.keyCode !== 13) return
+    handleGetQuestions()
   }
   
   return (
     <div className="flex flex-col justify-center items-center gap-6 text-white mt-2">
       <p className="text-xl max-w-xl text-center">A quiz generator based on any category you want. It may take a while to generate the questions</p>
       <div className="w-full flex justify-center">
-        <input onChange={handleCategory} className="bg-white text-black px-4 py-2 rounded-2xl rounded-br-none rounded-tr-none outline-0 w-full max-w-lg border-2 border-r-0 placeholder:text-neutral-400" type="text" placeholder="Example: Programing, Anime, Boxing" value={category} />
+        <input onKeyDown={handleEnter} onChange={handleCategory} className="bg-slate-200 hover:bg-white focus:bg-white text-black px-4 py-2 rounded-2xl rounded-br-none rounded-tr-none outline-0 w-full max-w-lg border-2 border-r-0 placeholder:text-neutral-400" type="text" placeholder="Example: Programing, Anime, Boxing" value={category} />
         <button
           onClick={handleGetQuestions}
           className="bg-white text-black px-4 py-2 rounded-2xl rounded-bl-none rounded-tl-none cursor-pointer border-2">
@@ -30,7 +36,7 @@ export const InputCategory = () => {
             }
         </button>
       </div>
-      <p className="text-xl mb-4 max-w-xl text-center">Write the category you want or select one of the ones we have pre-written for you.</p>
+      <p className="text-xl mb-4 mt-5 max-w-xl text-center text-amber-300">Write the category you want or select one of the ones we have pre-written for you.</p>
     </div>
   )
 }

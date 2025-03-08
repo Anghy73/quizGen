@@ -14,7 +14,7 @@ export const ListCategories = () => {
   ]
   
   return (
-    <div className="mt-10 flex justify-center gap-2 max-w-[350px] flex-wrap">
+    <div className="mt-5 flex justify-center gap-2 max-w-[350px] flex-wrap">
       {
         categories.map((cate, index) => (
           <Category key={index} cate={cate}></Category>

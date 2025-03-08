@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { HomePage } from "./components/HomePage";
 import { useQuizStore } from "./store/useQuizStore";
 import { Quiz } from "./components/Quiz";
@@ -6,11 +5,6 @@ import { Zenitho } from "uvcanvas";
 
 function App() {
   const questions = useQuizStore(state => state.questions)
-
-  useEffect(() => {
-    const apiKey = import.meta.env.VITE_URL;
-    console.log('API Key:', apiKey);
-  }, [])
 
   return (
     <div className="w-screen h-screen relative">

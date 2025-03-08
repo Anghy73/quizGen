@@ -1,14 +1,14 @@
 import { create } from "zustand"
+import confetti from 'canvas-confetti'
 
 export const useQuizStore = create((set, get) => ({
   questions: [],
   currentQuestion: 0,
+  category: '',
   loading: false,
   getQuestions: async (category) => {
     set({ loading: true })
-    console.log('yes');
-    console.log(category);
-    console.log(`${import.meta.env.VITE_URL}${category}`);
+    set({ category: category  })
 
     try {
       const res = await fetch(`${import.meta.env.VITE_URL}${category}`)
@@ -16,7 +16,7 @@ export const useQuizStore = create((set, get) => ({
       if (questions.questions) {
         set({ loading: false })
       }
-      console.log(questions.questions);
+      
       set({ questions: questions.questions })
     } catch (error) {
       console.log(error);
@@ -27,6 +27,7 @@ export const useQuizStore = create((set, get) => ({
     let answerCorrect = question.options.findIndex(opt => opt == question.correctAnswer)
     const newQuestions = structuredClone(questions)
     const questionIndex = newQuestions.findIndex(quest => quest.id == question.id)
+    if (answerIndex == answerCorrect) confetti()
 
     newQuestions[questionIndex] = {
       ...question,
