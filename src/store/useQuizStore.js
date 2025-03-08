@@ -20,17 +20,39 @@ export const useQuizStore = create((set, get) => ({
     console.log(category);
     console.log(`${import.meta.env.VITE_URL}${category}`);
 
-
-
-    const questions = get()
-
     try {
       const res = await fetch(`${import.meta.env.VITE_URL}${category}`)
-      const json = await res.json()
-      console.log(json);
-      set({ questions: questions })
+      const questions = await res.json()
+      console.log(questions);
+      set({ questions })
     } catch (error) {
       console.log(error);
     }
+  },
+  aswerUser: (question, answerIndex) => {
+    const { questions } = get()
+    let correctAswer = false
+    let answerCorrect = question.options.findIndex(opt => opt == question.correctAnswer)
+
+    if (question.correctAnswer == question.options[answerIndex]) {
+      correctAswer = true
+    }
+
+    console.log(question);
+    console.log(answerIndex);
+
+    const newQuestions = structuredClone(questions)
+    const questionIndex = newQuestions.findIndex(quest => quest.id == question.id)
+    console.log(newQuestions);
+    console.log(questionIndex);
+
+    newQuestions[questionIndex] = {
+      ...question,
+      IsAnswerCorrect: correctAswer,
+      answerCorrect: answerCorrect
+    }
+    
+
+    set({ questions: newQuestions })
   }
 }))

@@ -1,11 +1,25 @@
 import { useQuizStore } from "../store/useQuizStore";
 
+// const getBgColor = (info, index) => {
+//   const { userSelectedAnswer, correctAnswer } = info
+//   if (userSelectedAnswer == null) return 'transparent'
+//   if (index !== correctAnswer && index !== userSelectedAnswer) return 'transparent'
+//   if (index === correctAnswer) return 'green'
+//   if (index === userSelectedAnswer) return 'red'
+//   return 'transparent'
+// }
 
 export const Question = ({ questInfo, questIndex }) => {
+  const aswerUser = useQuizStore(state => state.aswerUser)
+
+  const handleAswer = (answerIndex) => () => {
+    aswerUser(questInfo, answerIndex)
+  }
+
   return (
     <div className="text-white w-full max-w-xl mt-20">
       {/* bg-neutral-900 bg-slate-900 bg-zinc-900 bg-gray-900 */}
-      <div className="bg-neutral-900 p-3 rounded-lg flex flex-col justify-center items-center border-2 border-neutral-500">
+      <div className="bg-neutral-900 p-3 rounded-xl flex flex-col justify-center items-center border-2 border-neutral-500">
         <div className="mt-6">
           <p className="text-md">Question <span className="font-bold text-amber-400">{questIndex}</span></p>
         </div>
@@ -13,7 +27,10 @@ export const Question = ({ questInfo, questIndex }) => {
         <div className="flex flex-col gap-2 justify-center items-center my-10 w-full">
           {
             questInfo.options.map((quest, index) => (
-              <button className="w-full max-w-2xs border-2 border-neutral-400 rounded-2xl py-1 cursor-pointer" key={index}>{quest}</button>
+              <button
+                onClick={handleAswer(index)}
+                className="w-full max-w-2xs border-2 border-neutral-400 rounded-2xl py-1 cursor-pointer"
+                key={index} >{quest}</button>
             ))
           }
         </div>
