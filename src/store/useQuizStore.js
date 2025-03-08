@@ -1,52 +1,23 @@
 import { create } from "zustand"
 
 export const useQuizStore = create((set, get) => ({
-  questions: [
-    {
-      "id": 1,
-      "question": "What is the output of print(3 * '3')?",
-      "correctAnswer": "333",
-      "options": [
-        "3",
-        "33",
-        "333",
-        "Error"
-      ]
-    },
-    {
-      "id": 2,
-      "question": "What is the output of print(dasdasdsad3 * '3')?",
-      "correctAnswer": "333",
-      "options": [
-        "3",
-        "33",
-        "333",
-        "Error"
-      ]
-    },
-    {
-      "id": 3,
-      "question": "What is the output of print(32222 * '3')?",
-      "correctAnswer": "333",
-      "options": [
-        "3",
-        "33",
-        "333",
-        "Error"
-      ]
-    }
-  ],
+  questions: [],
   currentQuestion: 0,
+  loading: false,
   getQuestions: async (category) => {
-    // console.log('yes');
-    // console.log(category);
-    // console.log(`${import.meta.env.VITE_URL}${category}`);
+    set({ loading: true })
+    console.log('yes');
+    console.log(category);
+    console.log(`${import.meta.env.VITE_URL}${category}`);
 
     try {
       const res = await fetch(`${import.meta.env.VITE_URL}${category}`)
       const questions = await res.json()
-      console.log(questions);
-      set({ questions })
+      if (questions.questions) {
+        set({ loading: false })
+      }
+      console.log(questions.questions);
+      set({ questions: questions.questions })
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +25,6 @@ export const useQuizStore = create((set, get) => ({
   aswerUser: (question, answerIndex) => {
     const { questions } = get()
     let answerCorrect = question.options.findIndex(opt => opt == question.correctAnswer)
-
     const newQuestions = structuredClone(questions)
     const questionIndex = newQuestions.findIndex(quest => quest.id == question.id)
 
@@ -81,5 +51,8 @@ export const useQuizStore = create((set, get) => ({
     if (previousQuestion >= 0) {
       set({ currentQuestion: previousQuestion })
     }
+  },
+  reset: () => {
+    set({ questions: [], currentQuestion: 0 })
   }
 }))

@@ -1,6 +1,7 @@
 import { useQuizStore } from "../store/useQuizStore";
 import { FaLessThan } from "react-icons/fa";
 import { FaGreaterThan } from "react-icons/fa";
+import { Footer } from "./Footer";
 
 export const Question = ({ questInfo, questIndex }) => {
   const aswerUser = useQuizStore(state => state.aswerUser)
@@ -32,7 +33,7 @@ export const Question = ({ questInfo, questIndex }) => {
             <FaGreaterThan></FaGreaterThan>
           </button>
         </div>
-        <p className="mt-4 text-cyan-500 text-lg">{questInfo.question}</p>
+        <p className="mt-4 text-cyan-500 text-lg text-center">{questInfo.question}</p>
         <div className="flex flex-col gap-2 justify-center items-center my-10 w-full">
           {
             questInfo.options.map((quest, index) => (
@@ -45,6 +46,7 @@ export const Question = ({ questInfo, questIndex }) => {
             ))
           }
         </div>
+        <Footer></Footer>
       </div>
     </div>
   )
@@ -53,15 +55,15 @@ export const Question = ({ questInfo, questIndex }) => {
 export const Quiz = () => {
   const questions = useQuizStore(state => state.questions)
   const currentQuestion = useQuizStore(state => state.currentQuestion)
+  const reset = useQuizStore(state => state.reset)
 
   const questionInfo = questions[currentQuestion]
-  console.log(questionInfo);
-
+  
   return (
     <>
       <header className="relative flex justify-center items-center w-full">
         {/* <span className="absolute top-auto left-10 text-white font-bold text-lg">Issue</span> */}
-        <h1 className="text-white font-bold text-6xl drop-shadow-[0_3.2px_3.2px_rgba(0,0,0,0.9)]">QuizGen</h1>
+        <h1 onClick={() => reset()} className="cursor-pointer text-white font-bold text-6xl drop-shadow-[0_3.2px_3.2px_rgba(0,0,0,0.9)]">QuizGen</h1>
       </header>
       <Question questInfo={questionInfo} questIndex={currentQuestion}></Question>
     </>
