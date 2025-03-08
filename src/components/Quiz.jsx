@@ -1,16 +1,15 @@
 import { useQuizStore } from "../store/useQuizStore";
 
-// const getBgColor = (info, index) => {
-//   const { userSelectedAnswer, correctAnswer } = info
-//   if (userSelectedAnswer == null) return 'transparent'
-//   if (index !== correctAnswer && index !== userSelectedAnswer) return 'transparent'
-//   if (index === correctAnswer) return 'green'
-//   if (index === userSelectedAnswer) return 'red'
-//   return 'transparent'
-// }
-
 export const Question = ({ questInfo, questIndex }) => {
   const aswerUser = useQuizStore(state => state.aswerUser)
+
+  const getBgColor = (index) => {
+    if (questInfo.answerUser == null) return 'transparent'
+    if (index !== questInfo.answerCorrect && index !== questInfo.answerUser) return 'transparent'
+    if (index === questInfo.answerCorrect) return 'green'
+    if (index === questInfo.answerUser) return 'red'
+    return 'transparent'
+  }
 
   const handleAswer = (answerIndex) => () => {
     aswerUser(questInfo, answerIndex)
@@ -29,6 +28,8 @@ export const Question = ({ questInfo, questIndex }) => {
             questInfo.options.map((quest, index) => (
               <button
                 onClick={handleAswer(index)}
+                disabled={questInfo.answerCorrect ? true : false}
+                style={{ backgroundColor: getBgColor(index) }}
                 className="w-full max-w-2xs border-2 border-neutral-400 rounded-2xl py-1 cursor-pointer"
                 key={index} >{quest}</button>
             ))

@@ -49,7 +49,8 @@ export const useQuizStore = create((set, get) => ({
     newQuestions[questionIndex] = {
       ...question,
       IsAnswerCorrect: correctAswer,
-      answerCorrect: answerCorrect
+      answerCorrect: answerCorrect,
+      answerUser: answerIndex
     }
     
 
