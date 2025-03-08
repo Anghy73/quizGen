@@ -1,7 +1,11 @@
 import { useQuizStore } from "../store/useQuizStore";
+import { FaLessThan } from "react-icons/fa";
+import { FaGreaterThan } from "react-icons/fa";
 
 export const Question = ({ questInfo, questIndex }) => {
   const aswerUser = useQuizStore(state => state.aswerUser)
+  const goToNext = useQuizStore(state => state.goToNext)
+  const goToBack = useQuizStore(state => state.goToBack)
 
   const getBgColor = (index) => {
     if (questInfo.answerUser == null) return 'transparent'
@@ -19,8 +23,14 @@ export const Question = ({ questInfo, questIndex }) => {
     <div className="text-white w-full max-w-xl mt-20">
       {/* bg-neutral-900 bg-slate-900 bg-zinc-900 bg-gray-900 */}
       <div className="bg-neutral-900 p-3 rounded-xl flex flex-col justify-center items-center border-2 border-neutral-500">
-        <div className="mt-6">
-          <p className="text-md">Question <span className="font-bold text-amber-400">{questIndex}</span></p>
+        <div className="mt-6 flex justify-center items-center gap-3">
+          <button onClick={() => goToBack()} className="hover:bg-neutral-800 p-2 rounded-xl cursor-pointer">
+            <FaLessThan></FaLessThan>
+          </button>
+          <p className="text-md">Question <span className="font-bold text-amber-400">{questIndex + 1}</span></p>
+          <button onClick={() => goToNext()} className="hover:bg-neutral-800 p-2 rounded-xl cursor-pointer">
+            <FaGreaterThan></FaGreaterThan>
+          </button>
         </div>
         <p className="mt-4 text-cyan-500 text-lg">{questInfo.question}</p>
         <div className="flex flex-col gap-2 justify-center items-center my-10 w-full">
